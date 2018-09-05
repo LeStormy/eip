@@ -1,0 +1,25 @@
+#navbar-padder
+.container
+  .row
+    .col.s9
+      .card
+        .card-content
+          - @devlogs.each do |log|
+            .card
+              .card-content
+                .card-title
+                  = log.title
+                blockquote
+                  = log.short_description
+                .right
+                  = "#{log.user.email} - #{log.created_at.strftime("%B %d, %Y")}"
+                br
+                br
+                br
+                = markdown(log.body)
+
+    .col.s3
+      .card
+        .card-content
+          .card-title
+            | Log calendar

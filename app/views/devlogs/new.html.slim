@@ -1,0 +1,40 @@
+#navbar-padder
+.container
+  .card
+    .card-content
+      .card-title
+        | Create a new log
+      blockquote
+        | Use markdown to create your article
+        br
+        | Check out this&nbsp;
+        a href="https://stackedit.io/"
+          | markdown editor
+        | !
+      br
+      br
+      br
+      = form_for Devlog.new do |f|
+        = f.hidden_field :user_id, value: current_user.id
+
+        .field style="width: 50%"
+          = f.label :title, "Title"
+          = f.text_field :title, class: "input"
+
+        br
+        br
+        .field style="width: 50%"
+          = f.label :short_description, "Introduction"
+          = f.text_area :short_description, class: "materialize-textarea"
+
+        br
+        br
+        .field
+          = f.label :body, "Log"
+          = f.text_area :body, class: "materialize-textarea"
+
+        br
+        br
+        .row
+          .col.s6.offset-s3
+            = f.submit "Publish!", class: "btn-flat outline-btn stormy-blue full-width"

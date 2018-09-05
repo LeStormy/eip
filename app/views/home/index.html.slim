@@ -1,3 +1,11 @@
+
 #navbar-padder
 .container
-  /= video_tag "trailer3.mp4", autoplay: "", loop: :loop, mute: :mute, class: "video"
+  = video_tag "trailer.mp4", mute: "", class: "video", id: "trailer"
+
+javascript:
+  var vid = document.getElementById("trailer");
+
+  vid.addEventListener("ended", function() {
+    vid.remove();
+  })

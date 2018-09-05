@@ -16,3 +16,10 @@
 //= require materialize
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on("turbolinks:load", function() {
+  var vid = document.getElementById("trailer");
+  if (vid)
+    vid.play();
+})
