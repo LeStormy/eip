@@ -1,0 +1,35 @@
+#top-navbar-padder
+nav.less-dark-back-alpha
+  .nav-wrapper.container
+    a.brand-logo.is-fun-text.blue-text.text-lighten-2 href=root_path
+      | Plain of glittering stone
+    ul.right.hide-on-med-and-down
+      li
+        = link_to "Dev Blog", devlogs_path, class: "is-fun-text is-30px blue-text text-lighten-2"
+      li
+        | &nbsp;&nbsp;&nbsp;&nbsp;
+      - if current_user.present?
+        li
+          = link_to "Log out", destroy_user_session_path, method: :delete, class: "is-fun-text is-30px blue-text text-lighten-2"
+        li
+          a.is-fun-text.is-30px.blue-text.text-lighten-2 href=root_path
+            i.material-icons
+              | settings
+      - else
+        li
+          = link_to "Log in", new_user_session_path, class: "is-fun-text is-30px blue-text text-lighten-2"
+
+    ul.hide-on-large-only.topnav id="mobile-demo"
+      li
+        = link_to "Dev Blog", devlogs_path, class: "is-fun-text is-30px blue-text text-lighten-2"
+    ul.right.hide-on-large-only.topnav id="mobile-demo"
+      - if current_user.present?
+        li
+          = link_to "Log out", destroy_user_session_path, method: :delete, class: "is-fun-text is-30px blue-text text-lighten-2"
+        li
+          a.is-fun-text.is-30px.blue-text.text-lighten-2 href=root_path
+            i.material-icons
+              | settings
+      - else
+        li
+          = link_to "Log in", new_user_session_path, class: "is-fun-text is-30px blue-text text-lighten-2"

@@ -1,0 +1,147 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import 'materialize';
+ @import "material_icons";
+ @import url('https://fonts.googleapis.com/css?family=Caveat+Brush');
+
+
+ .is-fun-text {
+   font-family: 'Caveat Brush';
+ }
+
+ .is-10px {
+   font-size: 10px;
+ }
+
+ .is-20px {
+   font-size: 20px;
+ }
+
+ .is-30px {
+   font-size: 30px;
+ }
+
+ .is-40px {
+   font-size: 40px;
+ }
+
+ .is-light-weight {
+   font-weight: lighter;
+ }
+
+ .is-normal-weight {
+   font-weight: normal;
+ }
+
+ .is-fat-weight {
+   font-weight: bold;
+ }
+
+ #navbar-padder {
+   padding-top: 62px;
+ }
+
+ #top-navbar-padder {
+   padding-top: 12px;
+ }
+
+ .is-dark img {
+   filter: brightness(75%);
+   transition: all 1s;
+ }
+
+ .is-dark:hover img {
+   filter: brightness(100%);
+   transition: all 0.7s;
+ }
+
+ .dark-back {
+     background-color: #202030;
+ }
+
+ .less-dark-back {
+   background-color: #343a47;
+ }
+
+ .less-dark-back-alpha {
+   background-color: rgba(52, 58, 71, 0.5);
+ }
+
+ a {
+   color: #52bfea;
+ }
+
+ a:hover {
+   color: #99dfea;
+ }
+
+ .stormy-blue {
+   color: #52bfea;
+ }
+
+ .btn-flat {
+   text-overflow: ellipsis;
+   overflow: hidden;
+ }
+
+ .outline-btn {
+   border: 2px solid #52bfea;
+   text-overflow: ellipsis;
+   word-wrap: break-word;
+ }
+
+ .outline-btn:hover {
+   background-color: #52bfea;
+ }
+
+ .outline-btn:active {
+   background-color: #52bfea;
+ }
+
+ .outline-btn:focus {
+   background-color: #52bfea;
+ }
+
+ .no-shadow {
+   box-shadow: none;
+ }
+
+ .full-width {
+   width: 100%;
+   text-overflow: ellipsis;
+ }
+
+ .half-width {
+   display: block;
+   width: 50%;
+ }
+
+ [type="radio"]:checked + label:after,
+ [type="radio"].with-gap:checked + label:after {
+   background-color: #52bfea;
+ }
+
+ .video {
+ position: fixed;
+ top: 50%; left: 50%;
+ z-index: -1;
+ min-width: 100%;
+ min-height: 100%;
+ width: auto;
+ height: auto;
+ transform: translate(-50%, -50%);
+}
