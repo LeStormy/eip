@@ -1,5 +1,10 @@
 #navbar-padder
 .container
+  - if current_user
+    .row
+      .col.s4.offset-s4.center-align
+        = link_to "NEW LOG", new_devlog_path, class: "btn-flat outline-btn stormy-blue full-width"
+
   .row
     .col.s9
       .card
@@ -8,18 +13,16 @@
             .card
               .card-content
                 .card-title
-                  = log.title
+                  = link_to log.title, devlog_path(log)
+                .right
+                  - if current_user
+                    = link_to "Edit", edit_devlog_path(log), class: "btn-flat outline-btn stormy-blue full-width"
+
                 blockquote
                   = log.short_description
                 .right
                   = "#{log.user.email} - #{log.created_at.strftime("%B %d, %Y")}"
                 br
-                br
-                br
-                = markdown(log.body)
 
     .col.s3
-      .card
-        .card-content
-          .card-title
-            | Log calendar
+      = render partial: "more_logs"

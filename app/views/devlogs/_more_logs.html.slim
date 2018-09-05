@@ -1,0 +1,11 @@
+.card
+  .card-content
+    .card-title
+      | More logs
+
+    h5
+      = link_to "All logs", devlogs_path
+    hr width="50%"
+    - @more_logs.each do |date|
+      h5
+        = link_to "#{Date::MONTHNAMES[date[0].to_i]} #{date[1].to_i}", devlogs_path(y: date[1].to_i, m: date[0].to_i)
