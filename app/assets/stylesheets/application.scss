@@ -70,6 +70,10 @@
    padding-top: 12px;
  }
 
+ .semi-transparent-card {
+   background-color: rgba(255, 255, 255, 0.85);
+ }
+
  .is-dark img {
    filter: brightness(75%);
    transition: all 1s;

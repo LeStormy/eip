@@ -1,3 +1,35 @@
 #navbar-padder
 .container
-  /= video_tag "trailer.mp4", mute: "", class: "video", id: "trailer"
+  /= video_tag "trailer.mp4", mute: "mute", class: "video", id: "trailer", controls: ""
+  = image_tag "lake.png", class: "video"
+  .row
+    .col.s6.offset-s3
+      .card.semi-transparent-card
+        .card-content
+          .card-title.center-align
+            h2.is-light-weight
+              | Latest news
+
+              hr width="50%"
+          h3.is-light-weight
+            = @last_log.title
+          h5.is-light-weight
+            = "by #{@last_log.user.name}"
+            .right
+              = "#{@last_log.created_at.strftime("%B %d, %Y")}"
+
+          blockquote.flow-text
+            = @last_log.short_description
+
+          .row
+            .col.s6.offset-s3
+              = button_to "See article", devlog_path(@last_log), class: "btn-flat outline-btn full-width"
+
+
+javascript:
+  var vid = document.getElementById("trailer");
+  if (vid) {
+    vid.addEventListener("ended", function() {
+      vid.remove();
+    })
+  }
