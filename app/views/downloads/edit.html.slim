@@ -35,3 +35,10 @@
         .row
           .col.s6.offset-s3
             = f.submit "Publish!", class: "btn-flat outline-btn stormy-blue full-width"
+
+
+
+            br
+            br
+            br
+            = button_to "Delete File", download_path(@download), method: :delete, class: "btn-flat danger-outline-btn red-text full-width"
