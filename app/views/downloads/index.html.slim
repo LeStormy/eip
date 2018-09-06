@@ -1,0 +1,22 @@
+#navbar-padder
+.container
+  - if current_user
+    .row
+      .col.s4.offset-s4.center-align
+        = link_to "NEW FILE", new_download_path, class: "btn-flat outline-btn stormy-blue full-width"
+
+  .row
+    .col.s8.offset-s2
+      - @downloads.each do |download|
+        .card
+          .card-content
+            .card-title
+              = download.name
+              .right
+                - if current_user
+                  = link_to "Edit", edit_download_path(download), class: "btn-flat outline-btn stormy-blue full-width"
+            = download.kind
+            blockquote
+              = download.description
+              .right
+                = link_to "Download", download.file, class: "btn-flat outline-btn stormy-blue full-width"

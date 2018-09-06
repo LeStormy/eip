@@ -1,14 +1,14 @@
 #navbar-padder
 .container
-  - if current_user
-    .row
-      .col.s3.offset-s3.center-align
-        = link_to "NEW LOG", new_devlog_path, class: "btn-flat outline-btn stormy-blue full-width"
-      .col.s3.center-align
-        = link_to "DRAFTS", drafts_path, class: "btn-flat outline-btn stormy-blue full-width"
+  .center-align
+    h2.white-text
+      | Drafts
+  .row
+    .col.s4.offset-s4.center-align
+      = link_to "NEW LOG", new_devlog_path, class: "btn-flat outline-btn stormy-blue full-width"
 
   .row
-    .col.s9
+    .col.s12
       .card
         .card-content
           - @devlogs.each do |log|
@@ -25,6 +25,9 @@
                 .right
                   = "#{log.user.email} - #{log.created_at.strftime("%B %d, %Y")}"
                 br
-
-    .col.s3
-      = render partial: "more_logs"
+                br
+                .row
+                  .col.s6.offset-s3
+                    = form_for log, method: :put do |ff|
+                      = ff.hidden_field :public, value: true
+                      = ff.submit "Publish", class: "btn-flat outline-btn stormy-blue full-width"

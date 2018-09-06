@@ -1,0 +1,22 @@
+#navbar-padder
+.container
+  .row
+    .col.s6.offset-s3
+      .card
+        .card-content
+          .card-title.center-align
+            | Forgot your password?
+
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            = devise_error_messages!
+
+            .field
+              = f.label :email
+              = f.email_field :email, autofocus: true, autocomplete: "email"
+
+            .row
+              .col.s8.offset-s2
+                .actions
+                  = f.submit "Send me reset password instructions", class: "btn-flat outline-btn stormy-blue full-width"
+
+          = render "devise/shared/links"

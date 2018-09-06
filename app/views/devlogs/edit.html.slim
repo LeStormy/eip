@@ -37,7 +37,20 @@
         br
         .row
           .col.s6.offset-s3
-            = f.submit "Update!", class: "btn-flat outline-btn stormy-blue full-width"
+            - if @devlog.public == false
+              = f.submit "Save", class: "btn-flat outline-btn stormy-blue full-width"
+              br
+              br
+              = f.submit "Publish!", class: "btn-flat outline-btn stormy-blue full-width"
+            - else
+              = f.hidden_field :public, value: true
+              = f.submit "Update!", class: "btn-flat outline-btn stormy-blue full-width"
+              br
+              br
+              = form_for @devlog, method: :put do |ff|
+                = ff.hidden_field :public, value: false
+                = ff.submit "Unpublish", class: "btn-flat outline-btn stormy-blue full-width"
+
 
 
       br

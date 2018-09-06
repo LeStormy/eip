@@ -1,0 +1,22 @@
+#navbar-padder
+.container
+  .row
+    .col.s9
+      .card
+        .card-content
+          .card-title
+            = @devlog.title
+          .right
+            - if current_user
+              = link_to "Edit", edit_devlog_path(@devlog), class: "btn-flat outline-btn stormy-blue full-width"
+
+          blockquote
+            = @devlog.short_description
+          .right
+            = "#{@devlog.user.email} - #{@devlog.created_at.strftime("%B %d, %Y")}"
+          br
+          br
+          br
+          = markdown(@devlog.body)
+    .col.s3
+      = render partial: "more_logs"

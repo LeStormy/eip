@@ -17,11 +17,22 @@
  @import 'materialize';
  @import "material_icons";
  @import url('https://fonts.googleapis.com/css?family=Caveat+Brush');
+ @import url('https://fonts.googleapis.com/css?family=Baloo');
+ @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 
  .is-fun-text {
    font-family: 'Caveat Brush';
  }
+
+ .is-fun-text {
+   font-family: 'Indie Flower';
+ }
+
+ .is-fun-text {
+   font-family: 'Baloo';
+ }
+
 
  .is-10px {
    font-size: 10px;

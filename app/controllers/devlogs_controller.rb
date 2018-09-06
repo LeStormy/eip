@@ -1,24 +1,29 @@
 class DevlogsController < ApplicationController
 
   def index
-    #authorize Devlog.new
-    @devlogs = Devlog.all.order(created_at: :desc)
+    authorize Devlog.new
+    @devlogs = policy_scope(Devlog.all).order(created_at: :desc)
 
     if params[:y].present? && params[:m].present?
       @devlogs = @devlogs.where('extract(year from created_at) = ?', params[:y]).where('extract(month from created_at) = ?', params[:m])
     end
 
-    @more_logs = Devlog.all.order(created_at: :desc).pluck("extract(month from created_at)", "extract(year from created_at)").uniq
+    @more_logs = policy_scope(Devlog.all).order(created_at: :desc).pluck("extract(month from created_at)", "extract(year from created_at)").uniq
   end
 
   def show
-    @devlog = Devlog.find_by(id: params[:id])
-    @more_logs = Devlog.all.order(created_at: :desc).pluck("extract(month from created_at)", "extract(year from created_at)").uniq
-    # authorize @devlog
+    @devlog = policy_scope(Devlog.find_by(id: params[:id]))
+    @more_logs = policy_scope(Devlog.all).order(created_at: :desc).pluck("extract(month from created_at)", "extract(year from created_at)").uniq
+    authorize @devlog
+  end
+
+  def drafts
+    authorize Devlog.new
+    @devlogs = Devlog.where(public: false).order(created_at: :desc)
   end
 
   def new
-    # authorize Devlog.new
+    authorize Devlog.new
 
   end
 
@@ -30,7 +35,12 @@ class DevlogsController < ApplicationController
       :body,
       :user_id
     ]))
-    # authorize devlog
+    authorize devlog
+    if params[:commit] == "Save"
+      devlog.public = false
+    else
+      devlog.public = true
+    end
     devlog.save!
 
     redirect_to devlog_path(devlog)
@@ -38,7 +48,7 @@ class DevlogsController < ApplicationController
 
   def edit
     @devlog = Devlog.find_by(id: params[:id])
-    # authorize @devlog
+    authorize @devlog
   end
 
   def update
@@ -47,9 +57,13 @@ class DevlogsController < ApplicationController
       :title,
       :short_description,
       :body,
-      :user_id
+      :user_id,
+      :public
     ]))
-    # authorize devlog
+    authorize devlog
+    if params[:commit] == "Publish!" || params[:commit] == "Update!"
+      devlog.public = true
+    end
     devlog.save!
 
     redirect_to devlog_path(devlog)
@@ -57,7 +71,7 @@ class DevlogsController < ApplicationController
 
   def destroy
     devlog = Devlog.find_by(id: params[:id])
-    # authorize devlog
+    authorize devlog
     devlog.destroy!
 
     redirect_to devlogs_path

@@ -69,5 +69,5 @@ gem 'materialize-sass', '~> 0.97.8'
 gem 'material_icons'
 gem 'kaminari'
 gem 'devise'
-
+gem 'pundit'
 gem 'redcarpet'

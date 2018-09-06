@@ -1,0 +1,37 @@
+#navbar-padder
+.container
+  .card
+    .card-content
+      .card-title
+        | Update a new downloadable file
+      br
+      br
+      br
+      = form_for @download, method: :put do |f|
+
+        .field style="width: 50%"
+          = f.label :name, "Name"
+          = f.text_field :name, class: "input"
+
+        br
+        br
+        .field style="width: 50%"
+          = f.label :description, "Description"
+          = f.text_area :description, class: "materialize-textarea"
+
+        br
+        br
+        .field style="width: 50%"
+          = f.label :kind, "Type (audio, video, doc...)"
+          = f.text_field :kind, class: "input"
+
+        br
+        = f.file_field :file, class: "file-field input-field"
+        br
+
+
+        br
+        br
+        .row
+          .col.s6.offset-s3
+            = f.submit "Publish!", class: "btn-flat outline-btn stormy-blue full-width"
