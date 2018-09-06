@@ -1,11 +1,3 @@
-
 #navbar-padder
 .container
   /= video_tag "trailer.mp4", mute: "", class: "video", id: "trailer"
-
-javascript:
-  var vid = document.getElementById("trailer");
-
-  vid.addEventListener("ended", function() {
-    vid.remove();
-  })
