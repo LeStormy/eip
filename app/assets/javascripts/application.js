@@ -23,7 +23,7 @@ $(document).on("turbolinks:load", function() {
     vid.play();
 })
 
-addEventListener("direct-upload:initialize", event => {
+addEventListener("direct-upload:initialize", function(event) {
   const { target, detail } = event
   const { id, file } = detail
   target.insertAdjacentHTML("beforebegin", `
@@ -34,19 +34,19 @@ addEventListener("direct-upload:initialize", event => {
   `)
 })
 
-addEventListener("direct-upload:start", event => {
+addEventListener("direct-upload:start", function(event) {
   const { id } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.remove("direct-upload--pending")
 })
 
-addEventListener("direct-upload:progress", event => {
+addEventListener("direct-upload:progress", function(event) {
   const { id, progress } = event.detail
   const progressElement = document.getElementById(`direct-upload-progress-${id}`)
   progressElement.style.width = `${progress}%`
 })
 
-addEventListener("direct-upload:error", event => {
+addEventListener("direct-upload:error", function(event) {
   event.preventDefault()
   const { id, error } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
@@ -54,7 +54,7 @@ addEventListener("direct-upload:error", event => {
   element.setAttribute("title", error)
 })
 
-addEventListener("direct-upload:end", event => {
+addEventListener("direct-upload:end", function(event) {
   const { id } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--complete")

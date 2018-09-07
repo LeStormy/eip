@@ -13,7 +13,7 @@
               hr width="50%"
           - if @last_log.present?
             h3.is-light-weight
-              = "#{@last_log.title}"
+              = "> #{@last_log.title}"
             h5.is-light-weight
               = "by #{@last_log.user.name}"
               .right
