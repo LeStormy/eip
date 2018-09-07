@@ -11,19 +11,20 @@
               | Latest news
 
               hr width="50%"
-          h3.is-light-weight
-            = "> #{@last_log.title}"
-          h5.is-light-weight
-            = "by #{@last_log.user.name}"
-            .right
-              = "#{@last_log.created_at.strftime("%B %d, %Y")}"
+          - if @last_log.present?
+            h3.is-light-weight
+              = "> #{@last_log.title}"
+            h5.is-light-weight
+              = "by #{@last_log.user.name}"
+              .right
+                = "#{@last_log.created_at.strftime("%B %d, %Y")}"
 
-          blockquote.flow-text
-            = @last_log.short_description
+            blockquote.flow-text
+              = @last_log.short_description
 
-          .row
-            .col.s6.offset-s3
-              = button_to "See article", devlog_path(@last_log), class: "btn-flat outline-btn full-width", method: :get
+            .row
+              .col.s6.offset-s3
+                = button_to "See article", devlog_path(@last_log), class: "btn-flat outline-btn full-width", method: :get
 
 
 javascript:
