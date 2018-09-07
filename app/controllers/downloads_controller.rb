@@ -17,6 +17,7 @@ class DownloadsController < ApplicationController
       :name,
       :file,
       :kind,
+      :file_size,
       :description
     ]))
     # authorize download
@@ -36,6 +37,7 @@ class DownloadsController < ApplicationController
       :name,
       :file,
       :kind,
+      :file_size,
       :description
     ]))
     # authorize download

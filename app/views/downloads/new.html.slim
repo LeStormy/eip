@@ -31,9 +31,10 @@
           .btn-flat.outline-btn.stormy-blue.full-width.center-align
             span
               | File
-            = f.file_field :file, class: "file-field input-field"
+            = f.file_field :file, class: "file-field input-field", direct_upload: true
           .file-path-wrapper
             input class="file-path validate" type="text" placeholder="Upload one file" id="text_part"
+        = f.hidden_field :file_size, value: 0
         br
         br
         .row
@@ -45,6 +46,8 @@ javascript:
   $('input[type=file]').change(function () {
     if (this.files.length > 1)
       document.getElementById("text_part").value = "Multi";
-    else
+    else {
       document.getElementById("text_part").value = this.files[0].name
+      document.getElementById("download_file_size").value = this.files[0].size
+    }
   });

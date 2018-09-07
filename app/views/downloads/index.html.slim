@@ -15,7 +15,7 @@
               .right
                 - if current_user
                   = link_to "Edit", edit_download_path(download), class: "btn-flat outline-btn stormy-blue full-width"
-            = download.kind
+            = "#{download.kind.capitalize}, #{Filesize.from("#{download.file_size} B").pretty}"
             blockquote
               = download.description
               .right
