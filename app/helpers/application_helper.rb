@@ -23,6 +23,10 @@ end
 
 class CustomRender < Redcarpet::Render::HTML
   def image(link, title, alt_text)
-    %(<img src="#{link}" width="100%" height="100%" alt="#{alt_text}>")
+    if link.include?('=youtube')
+      %(<div style='text-align: center'><iframe src='https://www.youtube.com/embed/#{link.split('=youtube')[1].split('v=')[1]}' frameborder='0' allowfullscreen width='640px' style='max-width: 100%' height='360px'></iframe></div>)
+    else
+      %(<img src="#{link}" width="100%" height="100%" alt="#{alt_text} />")
+    end
   end
 end
