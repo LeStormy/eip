@@ -14,9 +14,15 @@ module ApplicationHelper
       disable_indented_code_blocks: true
     }
 
-    renderer = Redcarpet::Render::HTML.new(options)
+    renderer = CustomRender.new(options)
     markdown = Redcarpet::Markdown.new(renderer, extensions)
 
     markdown.render(text).html_safe
+  end
+end
+
+class CustomRender < Redcarpet::Render::HTML
+  def image(link, title, alt_text)
+    %(<img src="#{link}" width="100%" height="100%" alt="#{alt_text}>")
   end
 end

@@ -6,6 +6,10 @@
         .card-content
           .card-title
             = @devlog.title
+            - if @devlog.public == false
+              br
+              .red-text
+                | NOT PUBLISHED
           .right
             - if current_user
               = link_to "Edit", edit_devlog_path(@devlog), class: "btn-flat outline-btn stormy-blue full-width"

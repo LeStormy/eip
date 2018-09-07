@@ -26,12 +26,25 @@
           = f.text_field :kind, class: "input"
 
         br
-        = f.file_field :file, class: "file-field input-field"
         br
-
-
+        .file-field.input-field style="width: 50%"
+          .btn-flat.outline-btn.stormy-blue.full-width.center-align
+            span
+              | File
+            = f.file_field :file, class: "file-field input-field"
+          .file-path-wrapper
+            input class="file-path validate" type="text" placeholder="Upload one file" id="text_part"
         br
         br
         .row
           .col.s6.offset-s3
             = f.submit "Publish!", class: "btn-flat outline-btn stormy-blue full-width"
+
+
+javascript:
+  $('input[type=file]').change(function () {
+    if (this.files.length > 1)
+      document.getElementById("text_part").value = "Multi";
+    else
+      document.getElementById("text_part").value = this.files[0].name
+  });

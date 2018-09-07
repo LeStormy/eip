@@ -1,0 +1,12 @@
+var block = [];
+
+<% @pictures.each do |picture| %>
+  block.push("<img src=\"<%= url_for(picture.file.attachment) %>\" width=\"100%\" id=\"<%= "IMG_TAG+" + url_for(picture.file.attachment) %>\" />")
+<% end %>
+
+document.getElementById("pic_list").innerHTML = block.join("<br />")
+
+$('img[id^="IMG_TAG+"]').click(function () {
+  let body = document.getElementById("devlog_body");
+  body.value = body.value + `![Image](${this.id.split("IMG_TAG+")[1]} =100x100)`;
+});

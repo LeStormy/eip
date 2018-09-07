@@ -24,7 +24,7 @@ class DevlogsController < ApplicationController
 
   def new
     authorize Devlog.new
-
+    @pictures = Picture.all.order(created_at: :desc).limit(20)
   end
 
   def create

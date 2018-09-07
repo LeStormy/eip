@@ -4,6 +4,11 @@
     .card-content
       .card-title
         | Edit log
+        - if @devlog.public == false
+          br
+          .red-text
+            | NOT PUBLISHED
+
       blockquote
         | Use markdown to create your article
         br

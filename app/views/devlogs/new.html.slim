@@ -1,44 +1,83 @@
 #navbar-padder
 .container
-  .card
-    .card-content
-      .card-title
-        | Create a new log
-      blockquote
-        | Use markdown to create your article
-        br
-        | Check out this&nbsp;
-        a href="https://stackedit.io/"
-          | markdown editor
-        | !
-      br
-      br
-      br
-      = form_for Devlog.new do |f|
-        = f.hidden_field :user_id, value: current_user.id
+  .row
+    .col.s9
+      .card
+        .card-content
+          .card-title
+            | Create a new log
+          blockquote
+            | Use markdown to create your article
+            br
+            | Check out this&nbsp;
+            a href="https://stackedit.io/"
+              | markdown editor
+            | !
+          br
+          br
+          br
+          = form_for Devlog.new do |f|
+            = f.hidden_field :user_id, value: current_user.id
 
-        .field style="width: 50%"
-          = f.label :title, "Title"
-          = f.text_field :title, class: "input"
+            .field style="width: 50%"
+              = f.label :title, "Title"
+              = f.text_field :title, class: "input"
 
-        br
-        br
-        .field style="width: 50%"
-          = f.label :short_description, "Introduction"
-          = f.text_area :short_description, class: "materialize-textarea"
-
-        br
-        br
-        .field
-          = f.label :body, "Log"
-          = f.text_area :body, class: "materialize-textarea"
-
-        br
-        br
-        .row
-          .col.s6.offset-s3
-            = f.submit "Save", class: "btn-flat outline-btn stormy-blue full-width"
             br
             br
+            .field style="width: 50%"
+              = f.label :short_description, "Introduction"
+              = f.text_area :short_description, class: "materialize-textarea"
+
             br
-            = f.submit "Publish!", class: "btn-flat outline-btn stormy-blue full-width"
+            br
+            .field
+              = f.label :body, "Log"
+              = f.text_area :body, class: "materialize-textarea"
+
+            br
+            br
+            .row
+              .col.s6.offset-s3
+                = f.submit "Save", class: "btn-flat outline-btn stormy-blue full-width"
+                br
+                br
+                br
+                = f.submit "Publish!", class: "btn-flat outline-btn stormy-blue full-width"
+
+          br
+          br
+    .col.s3
+      .card
+        .card-content
+          = form_for Picture.new, :remote => true do |ff|
+            .file-field.input-field
+              .btn-flat.outline-btn.stormy-blue.full-width.center-align
+                span
+                  | Image
+                = ff.file_field :file, class: "file-field input-field"
+              .file-path-wrapper
+                input class="file-path validate" type="text" placeholder="Upload one file" id="text_part"
+            .center-align
+              = ff.submit "Add image", class: "btn-flat outline-btn"
+          br
+          .center-align
+            hr width="50%"
+          br
+          #pic_list
+            - @pictures.each do |picture|
+              = image_tag picture.file, style: "width: 100%", id: "IMG_TAG+#{url_for(picture.file.attachment)}"
+
+
+javascript:
+  $('input[type=file]').change(function () {
+    if (this.files.length > 1)
+      document.getElementById("text_part").value = "Multi";
+    else
+      document.getElementById("text_part").value = this.files[0].name
+  });
+
+  $('img[id^="IMG_TAG+"]').click(function () {
+    let body = document.getElementById("devlog_body");
+    body.value = body.value + `![Image](${this.id.split("IMG_TAG+")[1]} =100x100)`;
+  });
